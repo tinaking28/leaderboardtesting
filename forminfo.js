@@ -6,8 +6,12 @@ const bodyParser = require('body-parser');
 const app = express();
 const qs = require('querystring');
 const url = require('url');
+const cors = require('cors');
 
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(express.static('public')); 
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+app.use(cors()); 
 
 app.post('/example', (req, res) => {
 	  // res.send(`Chosen type is:${req.body.info}.`);
