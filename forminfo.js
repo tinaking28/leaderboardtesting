@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors()); 
 // app.use(allowCrossDomain);
-
+console.log("uses work");
 app.post('/', (req, res) => {
 	  // res.send(`Chosen type is:${req.body.info}.`);
 	MongoClient.connect(urlm, { useUnifiedTopology: true }, function(err, db) {
@@ -85,9 +85,13 @@ app.get('/', (req, res) => {
 		// res.send(JSON.json(leadersJSON));
 	});
 });
-
+console.log("This is working");
+export default app;
 port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Server running on port${port}`);
 });
+
+
+
 
