@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors()); 
 
-app.post('/example', (req, res) => {
+app.post('/', (req, res) => {
 	  // res.send(`Chosen type is:${req.body.info}.`);
 	MongoClient.connect(urlm, { useUnifiedTopology: true }, function(err, db) {
 	    if(err) { console.log("Connection err: " + err); return; }

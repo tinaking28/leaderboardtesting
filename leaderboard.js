@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors()); 
 
-app.get('/leaderboard', (req, res) => {
+app.get('/', (req, res) => {
 
 	MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db){
 		if(err) { 
