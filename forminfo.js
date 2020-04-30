@@ -86,7 +86,7 @@ app.get('/', (req, res) => {
 	});
 });
 console.log("This is working");
-export default app;
+// export default app;
 port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`Server running on port${port}`);
