@@ -41,7 +41,7 @@ app.post('/', (req, res) => {
 		// var query = qs.parse(qobj);
   //   	console.log(JSON.stringify(query));
 		var newData = {"name": qobj.name, 
-					  "score": qobj.score};
+					  "score": Number(qobj.score)};
 		coll.insertOne(newData, function(err, res) {
 		    if (err) { 
 		    	console.log ("Error: " + err); return; 
