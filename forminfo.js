@@ -12,6 +12,7 @@ app.use(express.static('public')); 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors()); 
+app.use(allowCrossDomain);
 
 app.post('/', (req, res) => {
 	  // res.send(`Chosen type is:${req.body.info}.`);
