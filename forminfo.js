@@ -38,8 +38,7 @@ app.post('/example', (req, res) => {
 	
 });
 
-const port = 8080;
-
+port = process.env.PORT || 80 
 app.listen(port, () => {
   console.log(`Server running on port${port}`);
 });

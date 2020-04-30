@@ -5,13 +5,14 @@ var fs = require('fs');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 var dataArray = [];
 var jsonInfo = [];
 
 app.use(express.static('public')); 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(cors()); 
 
 app.get('/leaderboard', (req, res) => {
 
@@ -22,15 +23,26 @@ app.get('/leaderboard', (req, res) => {
 
 	    var dbo = db.db("leaders");
 		var collection = dbo.collection('leaders');
-		var leadersJSON = collection.find({},{"_id":false}).sort({score : -1}).limit(4);
-		const object = {"name":"tina"}
-		console.log(leadersJSON);
-		res.json(object);
+		console.log("before find");
+		collection.find({},{"_id":false}).sort({score : -1}).limit(4).toArray(function(err, result){
+		// collection.find({}).toArray(function(err, result){
+
+		// collection.findOne({"name":"alex"}, function(err, result){
+			if(err) { 
+				console.log ("Error: " + err); return; 
+			}
+			console.log("leaders json: " + JSON.stringify(result[1]));
+
+			res.json(result);
+
+		});
+		// const object = {"name":"tina"}
+		// console.log("leaders json: " + leadersJSON);
+		// res.send(JSON.json(leadersJSON));
 	});
 });
 
-const port = 8080;
-
+port = process.env.PORT || 80 
 app.listen(port, () => {
   console.log(`Server running on port${port}`);
 });
